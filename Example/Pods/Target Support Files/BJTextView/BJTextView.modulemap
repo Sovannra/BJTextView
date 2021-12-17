@@ -1,0 +1,6 @@
+framework module BJTextView {
+  umbrella header "BJTextView-umbrella.h"
+
+  export *
+  module * { export * }
+}

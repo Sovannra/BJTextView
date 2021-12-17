@@ -1,0 +1,16 @@
+PODS:
+  - BJTextView (0.1.0)
+
+DEPENDENCIES:
+  - BJTextView (from `../`)
+
+EXTERNAL SOURCES:
+  BJTextView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BJTextView: 83ebb85a03e9dd2794e50b919961f08da48d3034
+
+PODFILE CHECKSUM: cc80c60186b145e535b32d540444efdd42f43891
+
+COCOAPODS: 1.11.2
