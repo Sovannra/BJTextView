@@ -138,9 +138,7 @@ extension ViewController: BJCommentDelegate {
         print("Comment => \(comment)")
     }
 }
-
-​```
-
+​````
 ## Author
 
 Sovannra, sovannrakong@gmail.com
