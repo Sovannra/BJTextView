@@ -46,17 +46,6 @@ class ViewController: UIViewController {
         view.backgroundColor = .white
         setupComponent()
         vComment.popupKeyboard()
-        
-//        let vImage: UIImageView = UIImageView()
-//        let imageUrl = "https://i.pinimg.com/originals/82/ba/cc/82baccf7daa8ba41036459e86732ef3e.jpg"
-//        let comment = BJCommentModel(commentId: "1", text: "Hello")
-//        vComment.updateComment(comment)
-//        if imageUrl != "" {
-//            vImage.loadImage(with: imageUrl, completion: { [self] response,error in
-//                let comment = BJCommentModel(commentId: "1", image: vImage.image, text: "Hello")
-//                vComment.updateComment(comment)
-//            })
-//        }
     }
     
     
@@ -71,11 +60,6 @@ class ViewController: UIViewController {
         vComment.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         bottomConstraint = vComment.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         bottomConstraint?.isActive = true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func handleKeyBoardNotification(notification: Notification) {
