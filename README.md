@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/BJTextView.svg?style=flat)](https://cocoapods.org/pods/BJTextView)
 [![Platform](https://img.shields.io/cocoapods/p/BJTextView.svg?style=flat)](https://cocoapods.org/pods/BJTextView)
 
-<img width="50%" height="50%" src="https://user-images.githubusercontent.com/49421174/147409620-c1ce6f3d-4482-4399-857e-fec2f2109f94.jpeg" /><img width="50%" height="50%" src="https://user-images.githubusercontent.com/49421174/147409617-39c335c2-50f8-41e6-955b-cea093bb5472.jpeg" /><img width="50%" height="50%" src="https://user-images.githubusercontent.com/49421174/147409615-18c81475-1d38-4a4e-8ef9-a4cccf3a0ea4.jpeg" />
+<img width="30%" height="30%" src="https://user-images.githubusercontent.com/49421174/147409620-c1ce6f3d-4482-4399-857e-fec2f2109f94.jpeg" /><img width="30%" height="30%" src="https://user-images.githubusercontent.com/49421174/147409617-39c335c2-50f8-41e6-955b-cea093bb5472.jpeg" /><img width="30%" height="30%" src="https://user-images.githubusercontent.com/49421174/147409615-18c81475-1d38-4a4e-8ef9-a4cccf3a0ea4.jpeg" />
 ---
 ## Example
 
