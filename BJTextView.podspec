@@ -33,12 +33,14 @@ TODO: Add long description of the pod here.
   s.swift_version = "4.2"
 
   s.source_files = 'BJTextView/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'BJTextView' => ['BJTextView/Assets/*.png']
-  # }
+  s.resource = 'BJTextView/Assets/**/*.xcassets'
+#   s.resource_bundles = {
+#     'BJTextView' => ['BJTextView/Assets/**/*.xcassets']
+#   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+   s.dependency 'BJCollection'
+   s.dependency 'DKImagePickerController'
+   s.dependency 'Nuke'
 end

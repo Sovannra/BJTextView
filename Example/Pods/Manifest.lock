@@ -1,16 +1,94 @@
 PODS:
-  - BJTextView (0.1.0)
+  - BJCollection (0.2.0)
+  - BJTextView (0.1.0):
+    - BJCollection
+    - DKImagePickerController
+    - Nuke
+  - CropViewController (2.6.0)
+  - DKCamera (1.6.7)
+  - DKImagePickerController (4.3.2):
+    - DKImagePickerController/Camera (= 4.3.2)
+    - DKImagePickerController/Core (= 4.3.2)
+    - DKImagePickerController/ImageDataManager (= 4.3.2)
+    - DKImagePickerController/InlineCamera (= 4.3.2)
+    - DKImagePickerController/PhotoEditor (= 4.3.2)
+    - DKImagePickerController/PhotoGallery (= 4.3.2)
+    - DKImagePickerController/Resource (= 4.3.2)
+  - DKImagePickerController/Camera (4.3.2):
+    - DKCamera
+    - DKImagePickerController/Core
+  - DKImagePickerController/Core (4.3.2):
+    - DKImagePickerController/ImageDataManager
+    - DKImagePickerController/Resource
+  - DKImagePickerController/ImageDataManager (4.3.2)
+  - DKImagePickerController/InlineCamera (4.3.2):
+    - DKCamera
+    - DKImagePickerController/Core
+  - DKImagePickerController/PhotoEditor (4.3.2):
+    - CropViewController (~> 2.5)
+    - DKImagePickerController/Core
+  - DKImagePickerController/PhotoGallery (4.3.2):
+    - DKImagePickerController/Core
+    - DKPhotoGallery
+  - DKImagePickerController/Resource (4.3.2)
+  - DKPhotoGallery (0.0.17):
+    - DKPhotoGallery/Core (= 0.0.17)
+    - DKPhotoGallery/Model (= 0.0.17)
+    - DKPhotoGallery/Preview (= 0.0.17)
+    - DKPhotoGallery/Resource (= 0.0.17)
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Core (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Preview
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Model (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Preview (0.0.17):
+    - DKPhotoGallery/Model
+    - DKPhotoGallery/Resource
+    - SDWebImage
+    - SwiftyGif
+  - DKPhotoGallery/Resource (0.0.17):
+    - SDWebImage
+    - SwiftyGif
+  - Nuke (7.5.2)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
+  - SwiftyGif (5.4.2)
 
 DEPENDENCIES:
   - BJTextView (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - BJCollection
+    - CropViewController
+    - DKCamera
+    - DKImagePickerController
+    - DKPhotoGallery
+    - Nuke
+    - SDWebImage
+    - SwiftyGif
 
 EXTERNAL SOURCES:
   BJTextView:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BJTextView: 83ebb85a03e9dd2794e50b919961f08da48d3034
+  BJCollection: c6179987feb8e58f2310e33279557ce6914a59b8
+  BJTextView: 9018b552c04436a8934cbcc64e42ef0e8f30f672
+  CropViewController: 7093b39ec3cb508531b22d35773e06cecd7378d8
+  DKCamera: a902b66921fca14b7a75266feb8c7568aa7caa71
+  DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
+  DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SwiftyGif: dec758a9dd3d278e5a855dbf279bf062c923c387
 
-PODFILE CHECKSUM: cc80c60186b145e535b32d540444efdd42f43891
+PODFILE CHECKSUM: 976cdf7fc8a12238139d531468e39deab90ad345
 
 COCOAPODS: 1.11.2

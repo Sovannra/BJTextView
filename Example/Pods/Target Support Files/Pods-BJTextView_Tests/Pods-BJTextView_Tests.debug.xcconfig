@@ -1,8 +1,8 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BJTextView"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BJCollection" "${PODS_CONFIGURATION_BUILD_DIR}/BJTextView" "${PODS_CONFIGURATION_BUILD_DIR}/CropViewController" "${PODS_CONFIGURATION_BUILD_DIR}/DKCamera" "${PODS_CONFIGURATION_BUILD_DIR}/DKImagePickerController" "${PODS_CONFIGURATION_BUILD_DIR}/DKPhotoGallery" "${PODS_CONFIGURATION_BUILD_DIR}/Nuke" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyGif"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BJTextView/BJTextView.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "BJTextView"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BJCollection/BJCollection.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/BJTextView/BJTextView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/CropViewController/CropViewController.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/DKCamera/DKCamera.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/DKImagePickerController/DKImagePickerController.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/DKPhotoGallery/DKPhotoGallery.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Nuke/Nuke.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyGif/SwiftyGif.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "AVFoundation" -framework "AVKit" -framework "BJCollection" -framework "BJTextView" -framework "CoreMotion" -framework "CropViewController" -framework "DKCamera" -framework "DKImagePickerController" -framework "DKPhotoGallery" -framework "Foundation" -framework "ImageIO" -framework "Nuke" -framework "Photos" -framework "SDWebImage" -framework "SwiftyGif" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
