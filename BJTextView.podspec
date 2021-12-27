@@ -34,9 +34,6 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'BJTextView/Classes/**/*'
   s.resource = 'BJTextView/Assets/**/*.xcassets'
-#   s.resource_bundles = {
-#     'BJTextView' => ['BJTextView/Assets/**/*.xcassets']
-#   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
