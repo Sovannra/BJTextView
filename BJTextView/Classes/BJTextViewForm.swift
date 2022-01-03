@@ -11,6 +11,8 @@ enum IconTextViewType: Int {
     case photo   = 001
     case sticker = 002
     case send    = 003
+    case update  = 004
+    case cancel  = 005
 }
 
 public protocol BJTextViewDelegate {
@@ -44,6 +46,14 @@ public class BJTextViewForm: UIView {
         }
     }
     
+    var enableSend: Bool? {
+        didSet {
+            vSend.isEnabled = enableSend ?? false
+            vUpdate.isEnabled = enableSend ?? false
+            vUpdate.setTitleColor( enableSend == true ? .black : .gray, for: .normal)
+        }
+    }
+    
     var delegate: BJTextViewDelegate?
     
     /** get & set text value */
@@ -51,6 +61,7 @@ public class BJTextViewForm: UIView {
         get {
             return vTextView.text
         } set {
+            enableSend = newValue != ""
             vTextView.text = newValue
         }
     }
@@ -66,6 +77,7 @@ public class BJTextViewForm: UIView {
     fileprivate var vPhotoBottomConstraint: NSLayoutConstraint?
     fileprivate var vSendBottomConstraint: NSLayoutConstraint?
     fileprivate var vStickerBottomConstraint: NSLayoutConstraint?
+    fileprivate var vStackViewLeftConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,7 +94,10 @@ public class BJTextViewForm: UIView {
         addSubview(vPhoto)
         addSubview(vTextView)
         addSubview(vSticker)
-        addSubview(vSend)
+        addSubview(vStackView)
+        vStackView.addArrangedSubview(vCancel)
+        vStackView.addArrangedSubview(vUpdate)
+        vStackView.addArrangedSubview(vSend)
         
         // vPhoto
         vPhoto.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
@@ -100,7 +115,6 @@ public class BJTextViewForm: UIView {
         )
         vTextView.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         vTextView.leftAnchor.constraint(equalTo: vPhoto.rightAnchor, constant: 10).isActive = true
-        vTextView.rightAnchor.constraint(equalTo: vSend.leftAnchor, constant: -10).isActive = true
         vTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         vTextView.heightAnchor.constraint(greaterThanOrEqualToConstant: 0).isActive = true
         
@@ -112,11 +126,22 @@ public class BJTextViewForm: UIView {
         vStickerBottomConstraint?.isActive = true
         
         // vSend
-        vSend.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
-        vSendBottomConstraint = vSend.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
+        vStackViewLeftConstraint = vStackView.leftAnchor.constraint(equalTo: vTextView.rightAnchor, constant: 10)
+        vStackViewLeftConstraint?.isActive = true
+        vStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+        vSendBottomConstraint = vStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0)
         vSendBottomConstraint?.isActive = true
+        
+        //vSend
         vSend.heightAnchor.constraint(equalToConstant: iconSize).isActive = true
         vSend.widthAnchor.constraint(equalToConstant: iconSize).isActive = true
+        
+        //vCancel
+        vCancel.heightAnchor.constraint(equalToConstant: iconSize).isActive = true
+        vCancel.widthAnchor.constraint(equalToConstant: iconSize).isActive = true
+        
+        //vUpdate
+        vUpdate.widthAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
     fileprivate lazy var vTextView: BJUITextView = {
@@ -144,11 +169,43 @@ public class BJTextViewForm: UIView {
         return view
     }()
     
+    fileprivate let vStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.distribution = .fill
+        view.spacing = 5
+        return view
+    }()
+    
     fileprivate lazy var vSend: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setImage(BJAppConstant.loadImageResourcePath("icon-send"), for: .normal)
         view.tag = IconTextViewType.send.rawValue
+        view.isEnabled = false
+        view.addTarget(self, action: #selector(handleIconClick), for: .touchUpInside)
+        return view
+    }()
+    
+    fileprivate lazy var vCancel: UIButton = {
+        let view = UIButton(type: .system)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setImage(UIImage(named: "icon-cancel")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        view.isHidden = true
+        view.tag = IconTextViewType.cancel.rawValue
+        view.addTarget(self, action: #selector(handleIconClick), for: .touchUpInside)
+        return view
+    }()
+    
+    fileprivate lazy var vUpdate: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setTitle("Update", for: .normal)
+        view.setTitleColor(.black, for: .normal)
+        view.titleLabel?.font = .systemFont(ofSize: 14)
+        view.isHidden = true
+        view.tag = IconTextViewType.update.rawValue
         view.addTarget(self, action: #selector(handleIconClick), for: .touchUpInside)
         return view
     }()
@@ -179,11 +236,21 @@ public class BJTextViewForm: UIView {
         vSendBottomConstraint?.constant    = -padding
         vStickerBottomConstraint?.constant = -padding
     }
+    
+    func updateButton(isUpdate: Bool) {
+        vCancel.isHidden = !isUpdate
+        vUpdate.isHidden = !isUpdate
+        vSend.isHidden = isUpdate
+        vPhoto.isEnabled = !isUpdate
+        vSticker.isEnabled = !isUpdate
+    }
 }
 
 extension BJTextViewForm: UITextViewDelegate {
     
     public func textViewDidChange(_ textView: UITextView) {
+        BJCommentData.comment.text = textView.text
+        enableSend = BJCommentData.isEnableSend ? true : (textView.text != "")
         let size = CGSize(width: textView.frame.width, height: .infinity)
         let estimateSize = textView.sizeThatFits(size)
         textView.constraints.forEach { (constraints) in
@@ -197,6 +264,15 @@ extension BJTextViewForm: UITextViewDelegate {
             }
         }
     }
+    
+    // Prevent whitespace for firt character
+//    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        let whitespaceSet = CharacterSet.whitespaces
+//        if range.location == 0 && (text.rangeOfCharacter(from: whitespaceSet) != nil) {
+//            return false
+//        }
+//        return true
+//    }
 }
 
 extension BJTextViewForm {

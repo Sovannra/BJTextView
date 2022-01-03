@@ -56,7 +56,7 @@ public class BJImageContainer: UIView {
         vImageHeight?.constant = BJAppConstant.calculateAspect(containerSize, image: image)
     }
     
-    fileprivate func removeImage() {
+    func removeImage() {
         vImageTop?.constant = 0
         vImageWidth?.constant = 0
         vImageHeight?.constant = 0

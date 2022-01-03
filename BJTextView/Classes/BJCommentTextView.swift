@@ -106,16 +106,16 @@ extension BJCommentTextView {
     }
     
     public func updateComment(_ comment: BJCommentModel) {
+        vTextViewForm.updateButton(isUpdate: true)
+        vTextViewForm.showKeyboard()
         BJCommentData.comment = comment
         vTextViewForm.textStr = comment.text
-        if comment.image.size != .zero {
-            showImage(comment.image)
-        }
     }
     
     fileprivate func showImage(_ image: UIImage?) {
         self.vImageContainer.image = image
         BJCommentData.comment.image = image ?? UIImage()
+        vTextViewForm.enableSend = BJCommentData.isEnableSend
     }
     
     fileprivate func configImagePicker() {
@@ -140,6 +140,7 @@ extension BJCommentTextView {
         vImageContainer.clearPhotoClourse = {
             BJCommentData.comment.image = UIImage()
             BJCommentData.comment.stickerId = ""
+            self.vTextViewForm.enableSend = BJCommentData.isEnableSend
         }
     }
     
@@ -164,6 +165,13 @@ extension BJCommentTextView {
         vTextViewForm.updateStickerIcon()
         showHideStickerForm(false)
     }
+    
+    private func clearComment() {
+        BJCommentData.comment = BJCommentModel()
+        vImageContainer.removeImage()
+        vTextViewForm.textStr = ""
+        vTextViewForm.updateButton(isUpdate: false)
+    }
 }
 
 extension BJCommentTextView: BJTextViewDelegate {
@@ -181,8 +189,15 @@ extension BJCommentTextView: BJTextViewDelegate {
             }
             delegate?.didSelectSticker(button.isSelected)
         case .send:
-            BJCommentData.comment.text = vTextViewForm.textStr
+            BJCommentData.comment.type = BJCommentData.type
             delegate?.sendComment(BJCommentData.comment)
+            clearComment()
+        case .update:
+            BJCommentData.comment.type = BJCommentData.type
+            delegate?.updateComment(BJCommentData.comment)
+            clearComment()
+        case .cancel:
+            clearComment()
         }
     }
 }

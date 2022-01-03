@@ -5,19 +5,31 @@
 //  Created by Sovannra on 21/12/21.
 //
 
-import UIKit
+public enum BJCommentTextType: String, CaseIterable {
+    case caption = "caption"
+    case image   = "image"
+    case sticker = "sticker"
+}
 
 public struct BJCommentModel {
-    var commentId: String
-    var image: UIImage
-    var stickerId: String
-    var text: String
+    public var commentId: String
+    public var image: UIImage
+    public var imageUrl: String
+    public var stickerId: String
+    public var text: String
+    public var type: BJCommentTextType
+    public var indexPath: Int
+    public var createdAt: Double
     
-    public init(commentId: String?=nil, image: UIImage?=nil, stickerId: String?=nil, text: String?=nil) {
+    public init(commentId: String?=nil, image: UIImage?=nil, imageUrl: String?=nil, stickerId: String?=nil, text: String?=nil, type: BJCommentTextType?=nil, indexPath: Int?=nil, createdAt: Double?=nil) {
         self.commentId = commentId ?? ""
         self.image = image ?? UIImage()
+        self.imageUrl = imageUrl ?? ""
         self.stickerId = stickerId ?? ""
         self.text = text ?? ""
+        self.type = type ?? .caption
+        self.indexPath = indexPath ?? 0
+        self.createdAt = createdAt ?? Date().timeIntervalSince1970
     }
 }
 
@@ -51,3 +63,4 @@ public struct StickerSubCategoryModel {
         self.isSelected = false
     }
 }
+

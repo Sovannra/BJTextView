@@ -65,9 +65,22 @@ public protocol BJStickerDelegate {
 // BJComment Model
 public struct BJCommentData {
     public static var comment: BJCommentModel = BJCommentModel()
+    
+    public static var type: BJCommentTextType {
+        if comment.image == UIImage() {
+            return .caption
+        } else {
+            return comment.stickerId == "" ? .image : .sticker
+        }
+    }
+    
+    public static var isEnableSend: Bool {
+        return (comment.image != UIImage() || comment.stickerId != "" || comment.text != "") ? true : false
+    }
 }
 
 public protocol BJCommentDelegate {
     func sendComment(_ comment: BJCommentModel)
+    func updateComment(_ comment: BJCommentModel)
     func didSelectSticker(_ isSelected: Bool)
 }
