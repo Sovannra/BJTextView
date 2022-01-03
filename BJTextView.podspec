@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BJTextView'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'BJTextView is a UITextView.'
 
 # This description is used to generate tags and improve search results.

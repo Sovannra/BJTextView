@@ -92,6 +92,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: BJCommentDelegate {
+    func updateComment(_ comment: BJCommentModel) {
+        
+    }
+    
     func didSelectSticker(_ isSelected: Bool) {
         if isSelected == true && vComment.stickerData == nil {
             LocalDataSticker.loadSticker()
